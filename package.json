@@ -1,5 +1,5 @@
 {
-  "name": "SampleApp",
+  "name": "TestApp",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -12,8 +12,12 @@
   "dependencies": {
     "@actbase/react-daum-postcode": "^1.0.4",
     "@alessiocancian/react-native-actionsheet": "^3.2.0",
+    "@react-native-community/slider": "^4.5.0",
     "react": "17.0.2",
     "react-native": "0.68.2",
+    "react-native-color-panel": "^1.0.1",
+    "react-native-color-picker": "^0.6.0",
+    "react-native-color-wheel": "^0.1.7",
     "react-native-google-mobile-ads": "^12.10.0",
     "react-native-image-crop-picker": "^0.40.2",
     "react-native-image-crop-tools": "^1.6.4",
