@@ -52,10 +52,9 @@ const BottomComponent = ({onSelectImage}) => {
   );
 };
 
-const MainScreen = () => {
+const MainScreen = ({switchToTopScreen, switchToBottomScreen}) => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [isPictureSelectVisible, setIsPictureSelectVisible] = useState(false);
-  const [showBanner, setShowBanner] = useState(false); // 추가
 
   const handleSelectImage = imagePath => {
     setSelectedImage(imagePath);
@@ -69,18 +68,12 @@ const MainScreen = () => {
     setIsPictureSelectVisible(true);
   };
 
-  const handleShowBanner = () => {
-    // Bottom 버튼을 누를 때 flag 변경
-    setShowBanner(true);
-    console.log(showBanner);
-  };
-
   return (
     <View style={styles.container}>
       {/* 얼굴 클릭 시 PictureSelect를 호출하는 함수로 수정 */}
       <FaceComponent onPress={openPictureSelect} faceImage={selectedImage} />
-      <TopComponent onSelectImage={() => {}} />
-      <BottomComponent onSelectImage={handleShowBanner} />
+      <TopComponent onSelectImage={switchToTopScreen} />
+      <BottomComponent onSelectImage={switchToBottomScreen} />
 
       {/* PictureSelect 모달 팝업 */}
       <Modal
@@ -97,7 +90,7 @@ const MainScreen = () => {
       </Modal>
 
       {/* 조건부로 BannerScreen을 렌더링 */}
-      {showBanner && <BannerScreen />}
+      <BannerScreen />
     </View>
   );
 };
@@ -109,7 +102,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   faceContainer: {
-    marginBottom: 20,
+    marginBottom: 0,
   },
   circularContainer: {
     position: 'relative',

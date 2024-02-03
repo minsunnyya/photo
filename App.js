@@ -51,34 +51,59 @@
 
 // App.js
 
-import React from 'react';
-import ColorSelect from './TestFunctions/ColorSelect';
-import MainScreen from './TestScreens/MainScreen'; // 경로 확인
-import TopScreen from './TestScreens/TopScreen'; // 경로 확인
-
-const App = () => {
-  // return <ColorSelect />;
-  return <MainScreen />;
-  // return <TopScreen />;
-  // return <Navigation />;
-};
-
-export default App;
-
-/* react-native-color-wheel */
 // import React, {useState} from 'react';
-// import ColorWheel from 'react-native-color-wheel';
+// import ColorSelect from './TestFunctions/ColorSelect';
+// import MainScreen from './TestScreens/MainScreen';
+// import TopScreen from './TestScreens/TopScreen';
+// import BannerScreen from './TestScreens/BannerScreen';
 
 // const App = () => {
-//   const [color, setColor] = useState('#ffffff');
-
-//   return (
-//     <ColorWheel
-//       initialColor={color}
-//       onColorChange={selectedColor => setColor(selectedColor)}
-//       style={{flex: 1}}
-//     />
-//   );
+//   // return <ColorSelect />;
+//   // return <MainScreen />;
+//   return <TopScreen />;
+//   // return <Navigation />;
 // };
 
 // export default App;
+
+// App.js
+
+import React, {useState} from 'react';
+import MainScreen from './TestScreens/MainScreen';
+import TopScreen from './TestScreens/TopScreen';
+import BottomScreen from './TestScreens/BottomScreen';
+
+const App = () => {
+  const [currentScreen, setCurrentScreen] = useState('main');
+
+  const switchToMainScreen = () => {
+    setCurrentScreen('main');
+  };
+
+  const switchToTopScreen = () => {
+    setCurrentScreen('top');
+  };
+
+  const switchToBottomScreen = () => {
+    setCurrentScreen('bottom');
+  };
+
+  return (
+    <React.Fragment>
+      {currentScreen === 'main' ? (
+        <MainScreen
+          switchToTopScreen={switchToTopScreen}
+          switchToBottomScreen={switchToBottomScreen}
+        />
+      ) : currentScreen === 'top' ? (
+        <TopScreen switchToMainScreen={switchToMainScreen} />
+      ) : currentScreen === 'bottom' ? (
+        <BottomScreen switchToMainScreen={switchToMainScreen} />
+      ) : (
+        <BannerScreen switchToMainScreen={switchToMainScreen} />
+      )}
+    </React.Fragment>
+  );
+};
+
+export default App;
